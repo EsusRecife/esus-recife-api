@@ -1,5 +1,6 @@
 import { Injectable, Inject } from '@nestjs/common';
 import { EducationalInstitution } from '../models/educational_institution.model';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class EducationalInstitutionService {
@@ -17,6 +18,9 @@ export class EducationalInstitutionService {
   }
 
   async create(user: EducationalInstitution): Promise<EducationalInstitution> {
+    const salt = await bcrypt.genSalt(4, 'b');
+    user.password = await bcrypt.hash(user.password, salt);
+    
     return this.EducationalInstitutionRepository.create(user);
   }
 
