@@ -1,31 +1,22 @@
-require('dotenv').config({ path: __dirname + '/./../database.env' });
+require('dotenv').config({ path: __dirname + '/./../jwt.env' });
 
 import { Module } from '@nestjs/common';
-import { Auth } from './models/auth.model';
 import { AuthService } from './services/auth.service';
+import { AuthController } from './controllers/auth.controller';
+import { EducationalInstitutionModule } from './educational_institution.module';
 import { JwtModule } from '@nestjs/jwt';
 
 @Module({
   imports: [
-    SequelizeModule.forRoot({
-      dialect: 'postgres',
-      host: process.env.DB_HOST,
-      port: 5432,
-      username: process.env.DB_USER,
-      password: process.env.DB_PWD,
-      database: process.env.DB_NAME,
-      autoLoadModels: true,
-      synchronize: true,
+    EducationalInstitutionModule,
+    JwtModule.register({
+      global: true,
+      secret: process.env.JWT_CONSTANT,
+      signOptions: { expiresIn: '60s' },
     }),
-    SequelizeModule.forFeature([EducationalInstitution]),
   ],
-  controllers: [EducationalInstitutionController],
-  providers: [
-    EducationalInstitutionService,
-    {
-      provide: 'Educational_Institution_Repository',
-      useValue: EducationalInstitution,
-    },
-  ],
+  controllers: [AuthController],
+  providers: [AuthService],
+  exports:[AuthService]
 })
-export class AppModule {}
+export class AuthModule {}
