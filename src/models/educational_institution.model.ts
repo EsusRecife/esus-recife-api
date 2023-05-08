@@ -18,11 +18,12 @@ export class EducationalInstitution extends Model<EducationalInstitution> {
   streetNumber: number;
 
   @Column
+  cellphone: number;
+  
+  @Column
   email: string;
 
   @Column
   password: string;
 
-  @Column
-  startedAt: string;
 }
