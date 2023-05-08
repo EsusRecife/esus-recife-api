@@ -2,15 +2,14 @@ require('dotenv').config({ path: __dirname + '/./../database.env' });
 
 import { Module } from '@nestjs/common';
 import { SequelizeModule } from '@nestjs/sequelize';
-import { Auth } from './models/auth.model';
+import { AuthModule } from './auth.module';
+import { EducationalInstitutionModule } from './educational_institution.module';
 import { EducationalInstitution } from './models/educational_institution.model';
-import { AuthService } from './services/auth.service';
-import { EducationalInstitutionService } from './services/educational_institution.service';
-import { JwtModule } from '@nestjs/jwt';
-import { EducationalInstitutionController } from './controllers/educational_institution.controller';
 
 @Module({
   imports: [
+    EducationalInstitutionModule,
+    AuthModule,
     SequelizeModule.forRoot({
       dialect: 'postgres',
       host: process.env.DB_HOST,
@@ -22,14 +21,6 @@ import { EducationalInstitutionController } from './controllers/educational_inst
       synchronize: true,
     }),
     SequelizeModule.forFeature([EducationalInstitution]),
-  ],
-  controllers: [EducationalInstitutionController],
-  providers: [
-    EducationalInstitutionService,
-    {
-      provide: 'Educational_Institution_Repository',
-      useValue: EducationalInstitution,
-    },
   ],
 })
 export class AppModule {}
