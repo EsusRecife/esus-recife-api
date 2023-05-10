@@ -6,14 +6,17 @@ import {
   Delete,
   Param,
   Body,
+  UseGuards
 } from '@nestjs/common';
 import { EducationalInstitution } from '../models/educational_institution.model';
 import { EducationalInstitutionService } from '../services/educational_institution.service';
+import { AuthGuard } from 'src/auth.guard';
 
 @Controller('educational-institution')
 export class EducationalInstitutionController {
   constructor(private readonly EIService: EducationalInstitutionService) {}
 
+  @UseGuards(AuthGuard) 
   @Get()
   async findAll(): Promise<EducationalInstitution[]> {
     return this.EIService.findAll();
