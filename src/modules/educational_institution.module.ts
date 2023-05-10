@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
-import { EducationalInstitution } from './models/educational_institution.model';
-import { EducationalInstitutionService } from './services/educational_institution.service';
-import { EducationalInstitutionController } from './controllers/educational_institution.controller';
+import { EducationalInstitution } from '../models/educational_institution.model';
+import { EducationalInstitutionService } from '../services/educational_institution.service';
+import { EducationalInstitutionController } from '../controllers/educational_institution.controller';
 
 @Module({
   controllers: [EducationalInstitutionController],
