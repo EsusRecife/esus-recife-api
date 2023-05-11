@@ -1,6 +1,6 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { Auth } from 'src/models/auth.model';
-import { EducationalInstitutionService } from './educational_institution.service';
+import { Auth } from './auth.model';
+import { EducationalInstitutionService } from '../educational-institution/educational_institution.service';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 

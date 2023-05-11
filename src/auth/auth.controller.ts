@@ -3,8 +3,8 @@ import {
     Post,
     Body,
   } from '@nestjs/common';
-  import { Auth } from 'src/models/auth.model';
-  import { AuthService } from 'src/services/auth.service';
+  import { Auth } from './auth.model';
+  import { AuthService } from './auth.service';
   
   @Controller('auth')
   export class AuthController {
