@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@nestjs/common';
-import { EducationalInstitution } from '../models/educational_institution.model';
+import { EducationalInstitution } from './educational_institution.model';
 import * as bcrypt from 'bcrypt';
 
 @Injectable()

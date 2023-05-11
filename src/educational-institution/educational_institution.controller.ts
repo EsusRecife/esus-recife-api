@@ -8,9 +8,9 @@ import {
   Body,
   UseGuards
 } from '@nestjs/common';
-import { EducationalInstitution } from '../models/educational_institution.model';
-import { EducationalInstitutionService } from '../services/educational_institution.service';
-import { AuthGuard } from 'src/auth.guard';
+import { EducationalInstitution } from './educational_institution.model';
+import { EducationalInstitutionService } from './educational_institution.service';
+import { AuthGuard } from '../auth/auth.guard';
 
 @Controller('educational-institution')
 export class EducationalInstitutionController {
