@@ -2,9 +2,9 @@ require('dotenv').config({ path: __dirname + '/./../../database.env' });
 
 import { Module } from '@nestjs/common';
 import { SequelizeModule } from '@nestjs/sequelize';
-import { AuthModule } from './auth.module';
-import { EducationalInstitutionModule } from './educational_institution.module';
-import { EducationalInstitution } from '../models/educational_institution.model';
+import { AuthModule } from './auth/auth.module';
+import { EducationalInstitutionModule } from './educational-institution/educational_institution.module';
+import { EducationalInstitution } from './educational-institution/educational_institution.model';
 
 @Module({
   imports: [
