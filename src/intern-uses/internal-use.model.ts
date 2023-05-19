@@ -1,4 +1,4 @@
-import { Model, Column, Table } from 'sequelize-typescript';
+import { Model, Column, Table,DataType } from 'sequelize-typescript';
 
 @Table
 export class InternalUse extends Model<InternalUse> {
@@ -14,7 +14,7 @@ export class InternalUse extends Model<InternalUse> {
   @Column
   infoStudent: string;
 
-  @Column
+  @Column(DataType.JSONB)
   materials: { material: string, qty: number }[];
 
   @Column 
