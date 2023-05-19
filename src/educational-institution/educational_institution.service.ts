@@ -17,7 +17,7 @@ export class EducationalInstitutionService {
     return this.EducationalInstitutionRepository.findByPk(id);
   }
 
-  async findByInepCod(inepCod: number): Promise<EducationalInstitution> {
+  async findByInepCod(inepCod: string): Promise<EducationalInstitution> {
     return this.EducationalInstitutionRepository.findOne({where: {inepCod}});
   }
 

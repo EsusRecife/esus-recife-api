@@ -3,7 +3,7 @@ import { Model, Column, Table } from 'sequelize-typescript';
 @Table
 export class Auth extends Model<Auth> {
   @Column
-  inepCod: number;
+  inepCod: string;
 
   @Column
   password: string;

@@ -9,5 +9,5 @@ export class Manager extends Model<Manager> {
   cpf: string;
 
   @Column 
-  inepCod: number
+  inepCod: string
 }

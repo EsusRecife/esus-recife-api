@@ -4,7 +4,7 @@
 module.exports = {
   async up (queryInterface, Sequelize) {
       await queryInterface.bulkInsert('EducationalInstitutions', [{
-        inepCod: 26127792,
+        inepCod: '26127792',
         name: 'ESCOLA MUNICIPAL SAO DOMINGOS',
         cnpj: '03304711000148',
         cep: '50680000',

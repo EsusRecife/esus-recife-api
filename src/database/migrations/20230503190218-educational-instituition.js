@@ -10,7 +10,7 @@ module.exports = {
         defaultValue: uuidv4()
       },
       inepCod: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         allowNull: false
       },
       name: {

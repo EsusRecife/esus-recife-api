@@ -18,7 +18,7 @@ module.exports = {
         allowNull: false
       },
       inepCod: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         allowNull: false
       },
       createdAt: {
