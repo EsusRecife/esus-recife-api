@@ -5,10 +5,13 @@ import { SequelizeModule } from '@nestjs/sequelize';
 import { AuthModule } from './auth/auth.module';
 import { EducationalInstitutionModule } from './educational-institution/educational_institution.module';
 import { EducationalInstitution } from './educational-institution/educational_institution.model';
+import { ManagerModule } from './manager/manager.module';
+import { Manager } from './manager/manager.model';
 
 @Module({
   imports: [
     EducationalInstitutionModule,
+    ManagerModule,
     AuthModule,
     SequelizeModule.forRoot({
       dialect: 'postgres',
@@ -20,7 +23,7 @@ import { EducationalInstitution } from './educational-institution/educational_in
       autoLoadModels: true,
       synchronize: true,
     }),
-    SequelizeModule.forFeature([EducationalInstitution]),
+    SequelizeModule.forFeature([EducationalInstitution,Manager]),
   ],
 })
 export class AppModule {}
