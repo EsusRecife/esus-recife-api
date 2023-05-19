@@ -14,7 +14,7 @@ export class InternalUse extends Model<InternalUse> {
   @Column
   infoStudent: string;
 
-  @Column(DataType.JSONB)
+  @Column(DataType.ARRAY(DataType.JSONB))
   materials: { material: string, qty: number }[];
 
   @Column 
