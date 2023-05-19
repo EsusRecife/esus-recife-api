@@ -26,7 +26,7 @@ module.exports = {
         allowNull: false
       },
       materials: {
-        type: Sequelize.JSONB,
+        type: Sequelize.ARRAY(Sequelize.JSONB),
         allowNull: true
       },
       inepCod: {
