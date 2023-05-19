@@ -4,9 +4,9 @@ import {
   Post,
   Put,
   Delete,
-  Param,
   Body,
-  UseGuards
+  UseGuards,
+  Request
 } from '@nestjs/common';
 import { EducationalInstitution } from './educational_institution.model';
 import { EducationalInstitutionService } from './educational_institution.service';
@@ -18,13 +18,8 @@ export class EducationalInstitutionController {
 
   @UseGuards(AuthGuard) 
   @Get()
-  async findAll(): Promise<EducationalInstitution[]> {
-    return this.EIService.findAll();
-  }
-
-  @Get(':id')
-  async findById(@Param('id') id: number): Promise<EducationalInstitution> {
-    return this.EIService.findById(id);
+  async findById(@Request() req): Promise<EducationalInstitution> {
+    return this.EIService.findById(req.payload.institutionId);
   }
 
   @Post()
@@ -34,16 +29,20 @@ export class EducationalInstitutionController {
     return this.EIService.create(user);
   }
 
-  @Put(':id')
+  @UseGuards(AuthGuard)
+  @Put()
   async update(
-    @Param('id') id: number,
     @Body() user: EducationalInstitution,
+    @Request() req
   ): Promise<[number, EducationalInstitution[]]> {
-    return this.EIService.update(id, user);
+    return this.EIService.update(req.payload.institutionId, user);
   }
 
+  @UseGuards(AuthGuard)
   @Delete(':id')
-  async delete(@Param('id') id: number): Promise<number> {
-    return this.EIService.delete(id);
+  async delete(
+    @Request() req
+  ): Promise<number> {
+    return this.EIService.delete(req.payload.institutionId);
   }
 }
