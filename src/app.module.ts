@@ -7,11 +7,14 @@ import { EducationalInstitutionModule } from './educational-institution/educatio
 import { EducationalInstitution } from './educational-institution/educational_institution.model';
 import { ManagerModule } from './manager/manager.module';
 import { Manager } from './manager/manager.model';
+import { InternalUse } from './intern-uses/internal-use.model';
+import { InternalUseModule } from './intern-uses/internal-use.module';
 
 @Module({
   imports: [
     EducationalInstitutionModule,
     ManagerModule,
+    InternalUseModule,
     AuthModule,
     SequelizeModule.forRoot({
       dialect: 'postgres',
@@ -23,7 +26,7 @@ import { Manager } from './manager/manager.model';
       autoLoadModels: true,
       synchronize: true,
     }),
-    SequelizeModule.forFeature([EducationalInstitution,Manager]),
+    SequelizeModule.forFeature([EducationalInstitution,Manager,InternalUse]),
   ],
 })
 export class AppModule {}
