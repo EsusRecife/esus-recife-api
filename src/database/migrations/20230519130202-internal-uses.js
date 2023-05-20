@@ -7,7 +7,7 @@ module.exports = {
       id: {
         primaryKey: true,
         type: Sequelize.UUID,
-        defaultValue: uuidv4(),
+        defaultValue: Sequelize.fn('gen_random_uuid'),
       },
       activity: {
         type: Sequelize.STRING,
