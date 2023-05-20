@@ -8,6 +8,6 @@ export class Manager extends Model<Manager> {
   @Column
   cpf: string;
 
-  @Column 
-  inepCod: string
+  @Column
+  inepCod: string;
 }

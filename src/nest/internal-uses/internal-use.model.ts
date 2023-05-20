@@ -1,4 +1,4 @@
-import { Model, Column, Table,DataType } from 'sequelize-typescript';
+import { Model, Column, Table, DataType } from 'sequelize-typescript';
 
 @Table
 export class InternalUse extends Model<InternalUse> {
@@ -17,6 +17,6 @@ export class InternalUse extends Model<InternalUse> {
   @Column
   materials: string;
 
-  @Column 
+  @Column
   inepCod: string;
 }

@@ -26,7 +26,7 @@ import { InternalUseModule } from './internal-uses/internal-use.module';
       autoLoadModels: true,
       synchronize: true,
     }),
-    SequelizeModule.forFeature([EducationalInstitution,Manager,InternalUse]),
+    SequelizeModule.forFeature([EducationalInstitution, Manager, InternalUse]),
   ],
 })
 export class AppModule {}

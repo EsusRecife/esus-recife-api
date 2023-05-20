@@ -19,11 +19,10 @@ export class EducationalInstitution extends Model<EducationalInstitution> {
 
   @Column
   cellphone: number;
-  
+
   @Column
   email: string;
 
   @Column
   password: string;
-
 }

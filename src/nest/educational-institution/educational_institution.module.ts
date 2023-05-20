@@ -12,7 +12,6 @@ import { EducationalInstitutionController } from './educational_institution.cont
       useValue: EducationalInstitution,
     },
   ],
-  exports:[EducationalInstitutionService]
-
+  exports: [EducationalInstitutionService],
 })
 export class EducationalInstitutionModule {}

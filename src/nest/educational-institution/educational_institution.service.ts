@@ -18,13 +18,15 @@ export class EducationalInstitutionService {
   }
 
   async findByInepCod(inepCod: string): Promise<EducationalInstitution> {
-    return this.EducationalInstitutionRepository.findOne({where: {inepCod}});
+    return this.EducationalInstitutionRepository.findOne({
+      where: { inepCod },
+    });
   }
 
   async create(user: EducationalInstitution): Promise<EducationalInstitution> {
     const salt = await bcrypt.genSalt(4, 'b');
     user.password = await bcrypt.hash(user.password, salt);
-    
+
     return this.EducationalInstitutionRepository.create(user);
   }
 
