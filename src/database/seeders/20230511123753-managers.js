@@ -6,7 +6,7 @@ module.exports = {
       await queryInterface.bulkInsert('Managers', [{
         name: 'NOEMI CATHIA ANDRADE SILVA LIRA',
         cpf: '03304000148',
-        inepCod: 26127792,
+        inepCod: '26127792',
       }], {});
     
   },

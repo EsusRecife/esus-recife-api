@@ -3,7 +3,7 @@ import { Model, Column, Table } from 'sequelize-typescript';
 @Table
 export class EducationalInstitution extends Model<EducationalInstitution> {
   @Column
-  inepCod: number;
+  inepCod: string;
 
   @Column
   name: string;
