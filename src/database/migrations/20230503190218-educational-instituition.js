@@ -1,45 +1,44 @@
 'use strict';
-const {v4:uuidv4} = require('uuid') 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('EducationalInstitutions', {
       id: {
         type: Sequelize.UUID,
-        primaryKey:true,
-        defaultValue: uuidv4()
+        primaryKey: true,
+        defaultValue: Sequelize.fn('gen_random_uuid'),
       },
       inepCod: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
       },
       name: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
       },
       cnpj: {
         type: Sequelize.STRING(14),
-        allowNull: false
+        allowNull: false,
       },
       cep: {
         type: Sequelize.STRING(8),
-        allowNull: false
+        allowNull: false,
       },
       streetNumber: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
       },
       cellphone: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
       },
       email: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
       },
       password: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
       },
       createdAt: {
         type: Sequelize.DATE,
