@@ -1,7 +1,7 @@
 import { ManagerService } from "./manager.service";
 import { Manager } from "./manager.model";
 import { Body, Controller, Get, Post, Request,UseGuards } from "@nestjs/common";
-import { AuthGuard } from "src/auth/auth.guard";
+import { AuthGuard } from "../auth/auth.guard";
 
 @Controller('manager')
 export class ManagerController {
