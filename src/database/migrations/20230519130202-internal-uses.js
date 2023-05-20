@@ -1,5 +1,5 @@
 'use strict';
-const {v4:uuidv4} = require('uuid') 
+const { v4: uuidv4 } = require('uuid');
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -7,43 +7,43 @@ module.exports = {
       id: {
         primaryKey: true,
         type: Sequelize.UUID,
-        defaultValue: uuidv4()
+        defaultValue: uuidv4(),
       },
       activity: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
       },
       qtyStudent: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
       },
       qtyEducator: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
       },
       infoStudent: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true,
       },
       materials: {
-        type: Sequelize.ARRAY(Sequelize.JSONB),
-        allowNull: true
+        type: Sequelize.STRING,
+        allowNull: true,
       },
       inepCod: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
       },
       createdAt: {
         defaultValue: new Date(),
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updatedAt: {
         defaultValue: new Date(),
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('InternalUses');
-  }
+  },
 };
