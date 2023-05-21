@@ -7,8 +7,8 @@ import { EducationalInstitutionModule } from './educational-institution/educatio
 import { EducationalInstitution } from './educational-institution/educational_institution.model';
 import { ManagerModule } from './manager/manager.module';
 import { Manager } from './manager/manager.model';
-import { InternalUse } from './internal-uses/internal-use.model';
-import { InternalUseModule } from './internal-uses/internal-use.module';
+import { InternalUse } from './internal-use/internal-use.model';
+import { InternalUseModule } from './internal-use/internal-use.module';
 
 @Module({
   imports: [
