@@ -1,4 +1,4 @@
-require('dotenv').config({ path: __dirname + '/./../../jwt.env' });
+require('dotenv').config({ path: __dirname + '/./../../../jwt.env' });
 
 import {
   CanActivate,
