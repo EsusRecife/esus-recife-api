@@ -20,7 +20,7 @@ export class ManagerController {
   }
 
   @Get()
-  async findById(@Request() req): Promise<Manager> {
-    return this.managerService.findByInepCod(req.payload.institutionInepCod);
+  async findById(): Promise<Manager[]> {
+    return this.managerService.findByInepCod();
   }
 }

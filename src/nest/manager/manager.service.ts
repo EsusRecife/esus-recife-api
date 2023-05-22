@@ -8,7 +8,7 @@ export class ManagerService {
     private readonly ManagerRepository: typeof Manager,
   ) {}
 
-  async findByInepCod(inepCod: string): Promise<Manager[]> {
+  async findByInepCod(): Promise<Manager[]> {
     return this.ManagerRepository.findAll();
   }
 
