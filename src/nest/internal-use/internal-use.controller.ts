@@ -20,9 +20,7 @@ export class InternalUseController {
   }
 
   @Get()
-  async findById(@Request() req): Promise<InternalUse> {
-    return this.internalUseService.findByInepCod(
-      req.payload.institutionInepCod,
-    );
+  async findById(): Promise<InternalUse[]> {
+    return this.internalUseService.findByInepCod();
   }
 }

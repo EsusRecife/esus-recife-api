@@ -17,8 +17,8 @@ export class EducationalInstitutionController {
   constructor(private readonly EIService: EducationalInstitutionService) {}
 
   @Get()
-  async findById(@Request() req): Promise<EducationalInstitution> {
-    return this.EIService.findById(req.payload.institutionId);
+  async findById(@Request() req): Promise<EducationalInstitution[]> {
+    return this.EIService.findAll();
   }
 
   @Post()

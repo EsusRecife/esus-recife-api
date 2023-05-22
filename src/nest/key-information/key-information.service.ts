@@ -8,8 +8,8 @@ export class KeyInformationService {
     private readonly KeyInformationRepository: typeof KeyInformation,
   ) {}
 
-  async findByInepCod(inepCod: string): Promise<KeyInformation> {
-    return this.KeyInformationRepository.findOne({ where: { inepCod } });
+  async findByInepCod(): Promise<KeyInformation[]> {
+    return this.KeyInformationRepository.findAll();
   }
 
   async create(user: KeyInformation): Promise<KeyInformation> {

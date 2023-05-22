@@ -8,8 +8,8 @@ export class InternalUseService {
     private readonly InternalUseRepository: typeof InternalUse,
   ) {}
 
-  async findByInepCod(inepCod: string): Promise<InternalUse> {
-    return this.InternalUseRepository.findOne({ where: { inepCod } });
+  async findByInepCod(): Promise<InternalUse[]> {
+    return this.InternalUseRepository.findAll()
   }
 
   async create(payload: InternalUse): Promise<InternalUse> {

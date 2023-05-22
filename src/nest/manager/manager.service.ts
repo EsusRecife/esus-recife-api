@@ -8,8 +8,8 @@ export class ManagerService {
     private readonly ManagerRepository: typeof Manager,
   ) {}
 
-  async findByInepCod(inepCod: string): Promise<Manager> {
-    return this.ManagerRepository.findOne({ where: { inepCod } });
+  async findByInepCod(inepCod: string): Promise<Manager[]> {
+    return this.ManagerRepository.findAll();
   }
 
   async create(user: Manager): Promise<Manager> {

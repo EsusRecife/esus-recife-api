@@ -20,7 +20,7 @@ export class KeyInformationController {
   }
 
   @Get()
-  async findById(@Request() req): Promise<KeyInformation> {
-    return this.keyInformationRepository.findByInepCod(req.payload.institutionInepCod);
+  async findById(): Promise<KeyInformation[]> {
+    return this.keyInformationRepository.findByInepCod();
   }
 }
