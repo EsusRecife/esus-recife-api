@@ -14,13 +14,11 @@ import { AuthGuard } from '../auth/auth.guard';
 export class InternalUseController {
   constructor(private readonly internalUseService: InternalUseService) {}
 
-  @UseGuards(AuthGuard)
   @Post()
   async create(@Body() user: InternalUse): Promise<InternalUse> {
     return this.internalUseService.create(user);
   }
 
-  @UseGuards(AuthGuard)
   @Get()
   async findById(@Request() req): Promise<InternalUse> {
     return this.internalUseService.findByInepCod(

@@ -16,7 +16,6 @@ import { AuthGuard } from '../auth/auth.guard';
 export class EducationalInstitutionController {
   constructor(private readonly EIService: EducationalInstitutionService) {}
 
-  @UseGuards(AuthGuard)
   @Get()
   async findById(@Request() req): Promise<EducationalInstitution> {
     return this.EIService.findById(req.payload.institutionId);
@@ -29,7 +28,6 @@ export class EducationalInstitutionController {
     return this.EIService.create(user);
   }
 
-  @UseGuards(AuthGuard)
   @Put()
   async update(
     @Body() user: EducationalInstitution,
@@ -38,7 +36,6 @@ export class EducationalInstitutionController {
     return this.EIService.update(req.payload.institutionId, user);
   }
 
-  @UseGuards(AuthGuard)
   @Delete(':id')
   async delete(@Request() req): Promise<number> {
     return this.EIService.delete(req.payload.institutionId);
