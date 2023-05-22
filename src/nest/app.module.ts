@@ -1,4 +1,4 @@
-require('dotenv').config({ path: __dirname + '/./../database.env' });
+require('dotenv').config({ path: __dirname + '/./../../database.env' });
 
 import { Module } from '@nestjs/common';
 import { SequelizeModule } from '@nestjs/sequelize';
