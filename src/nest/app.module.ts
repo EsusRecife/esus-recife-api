@@ -1,4 +1,4 @@
-require('dotenv').config({ path: __dirname + '/./../../database.env' });
+require('dotenv').config({ path: __dirname + '/./../../.env' });
 
 import { Module } from '@nestjs/common';
 import { SequelizeModule } from '@nestjs/sequelize';
@@ -28,7 +28,12 @@ import { KeyInformationModule } from './key-information/key-information.module';
       autoLoadModels: true,
       synchronize: true,
     }),
-    SequelizeModule.forFeature([EducationalInstitution, Manager, InternalUse,KeyInformation]),
+    SequelizeModule.forFeature([
+      EducationalInstitution,
+      Manager,
+      InternalUse,
+      KeyInformation,
+    ]),
   ],
 })
 export class AppModule {}

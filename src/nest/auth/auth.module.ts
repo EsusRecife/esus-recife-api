@@ -1,4 +1,4 @@
-require('dotenv').config({ path: __dirname + '/./../../jwt.env' });
+require('dotenv').config({ path: __dirname + '/./../../.env' });
 
 import { Module } from '@nestjs/common';
 import { AuthService } from './auth.service';
