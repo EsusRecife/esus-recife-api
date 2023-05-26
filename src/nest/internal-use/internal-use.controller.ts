@@ -27,4 +27,10 @@ export class InternalUseController {
       req.payload.institutionInepCod,
     );
   }
+
+  @UseGuards(AuthGuard)
+  @Get('dashboard/activity')
+  async getActivity(@Request() req): Promise<object> {
+    return this.internalUseService.getActivity(req.payload.institutionInepCod);
+  }
 }

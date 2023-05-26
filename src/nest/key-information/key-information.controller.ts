@@ -25,4 +25,12 @@ export class KeyInformationController {
   async findById(@Request() req): Promise<KeyInformation> {
     return this.keyInformationRepository.findByInepCod(req.payload.institutionInepCod);
   }
+
+  @UseGuards(AuthGuard)
+  @Get('dashboard/kg')
+  async getFood(@Request() req): Promise<number> {
+    return this.keyInformationRepository.getFood(
+      req.payload.institutionInepCod,
+    );
+  }
 }
