@@ -12,7 +12,9 @@ import { AuthGuard } from '../auth/auth.guard';
 
 @Controller('key-information')
 export class KeyInformationController {
-  constructor(private readonly keyInformationRepository: KeyInformationService) {}
+  constructor(
+    private readonly keyInformationRepository: KeyInformationService,
+  ) {}
 
   @UseGuards(AuthGuard)
   @Post()
@@ -23,13 +25,23 @@ export class KeyInformationController {
   @UseGuards(AuthGuard)
   @Get()
   async findById(@Request() req): Promise<KeyInformation> {
-    return this.keyInformationRepository.findByInepCod(req.payload.institutionInepCod);
+    return this.keyInformationRepository.findByInepCod(
+      req.payload.institutionInepCod,
+    );
   }
 
   @UseGuards(AuthGuard)
   @Get('dashboard/kg')
   async getFood(@Request() req): Promise<number> {
     return this.keyInformationRepository.getFood(
+      req.payload.institutionInepCod,
+    );
+  }
+
+  @UseGuards(AuthGuard)
+  @Get('dashboard/weekly-amount')
+  async getWeeklyAmnt(@Request() req): Promise<object> {
+    return this.keyInformationRepository.weeklyAmnt(
       req.payload.institutionInepCod,
     );
   }

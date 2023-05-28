@@ -1,12 +1,14 @@
 import { Inject, Injectable, UnauthorizedException } from '@nestjs/common';
 import { KeyInformation } from './key-information.model';
-import { Sequelize } from 'sequelize';
+import { Sequelize } from 'sequelize-typescript';
+import { QueryTypes } from 'sequelize';
 
 @Injectable()
 export class KeyInformationService {
   constructor(
     @Inject('Key_Information_Repository')
     private readonly KeyInformationRepository: typeof KeyInformation,
+    private readonly sequelize: Sequelize,
   ) {}
 
   async findByInepCod(inepCod: string): Promise<KeyInformation> {
@@ -16,7 +18,22 @@ export class KeyInformationService {
   async create(user: KeyInformation): Promise<KeyInformation> {
     return this.KeyInformationRepository.create(user);
   }
-  
+
+  async weeklyAmnt(inepCod: string): Promise<object> {
+    const result = await this.KeyInformationRepository.sequelize.query(
+      `
+      select sum("amntFoodReceived" - "amntFoodSpent") as collected, date_trunc('week',"createdAt") as week
+      from "KeyInformations" 
+      where "inepCod" = :inepCod 
+      group by date_trunc('week',"createdAt")
+      `,
+      {
+        replacements: { inepCod },
+        type: QueryTypes.SELECT,
+      },
+    );
+    return result;
+  }
   async getFood(inepCod: string): Promise<number> {
     const received = await this.KeyInformationRepository.findOne({
       where: { inepCod },
@@ -36,7 +53,6 @@ export class KeyInformationService {
       ],
       raw: true,
     });
-    console.log(received, spent);
     const collected =
       Number(received['amntFoodReceived']) - Number(spent['amntFoodSpent']);
     return collected;
