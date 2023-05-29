@@ -20,9 +20,9 @@ export class ManagerController {
     return this.managerService.create(user);
   }
 
-  @UseGuards(AuthGuard)
-  @Get()
-  async findById(@Request() req): Promise<Manager> {
-    return this.managerService.findByInepCod(req.payload.institutionInepCod);
-  }
+  // @UseGuards(AuthGuard)
+  // @Get()
+  // async findById(@Request() req): Promise<Manager> {
+  //   return this.managerService.findByInepCod(req.payload.institutionInepCod);
+  // }
 }

@@ -20,13 +20,13 @@ export class InternalUseController {
     return this.internalUseService.create(user);
   }
 
-  @UseGuards(AuthGuard)
-  @Get()
-  async findById(@Request() req): Promise<InternalUse> {
-    return this.internalUseService.findByInepCod(
-      req.payload.institutionInepCod,
-    );
-  }
+  // @UseGuards(AuthGuard)
+  // @Get()
+  // async findById(@Request() req): Promise<InternalUse> {
+  //   return this.internalUseService.findByInepCod(
+  //     req.payload.institutionInepCod,
+  //   );
+  // }
 
   @UseGuards(AuthGuard)
   @Get('dashboard/activity')

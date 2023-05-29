@@ -22,13 +22,13 @@ export class KeyInformationController {
     return this.keyInformationRepository.create(user);
   }
 
-  @UseGuards(AuthGuard)
-  @Get()
-  async findById(@Request() req): Promise<KeyInformation> {
-    return this.keyInformationRepository.findByInepCod(
-      req.payload.institutionInepCod,
-    );
-  }
+  // @UseGuards(AuthGuard)
+  // @Get()
+  // async findById(@Request() req): Promise<KeyInformation> {
+  //   return this.keyInformationRepository.findByInepCod(
+  //     req.payload.institutionInepCod,
+  //   );
+  // }
 
   @UseGuards(AuthGuard)
   @Get('dashboard/kg')
