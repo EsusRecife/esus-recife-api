@@ -1,7 +1,7 @@
 import { Controller, Post, Body } from '@nestjs/common';
 import { Auth } from './auth.model';
 import { AuthService } from './auth.service';
-import { ApiResponse, ApiBody } from '@nestjs/swagger';
+import { ApiResponse, ApiBody, ApiHeader } from '@nestjs/swagger';
 
 @Controller('auth')
 export class AuthController {
@@ -15,7 +15,6 @@ export class AuthController {
       'application/json': {
         schema: {
           type: 'object',
-          items: { $ref: '#/components/schemas/Auth' },
         },
         example: {
           access_token:
@@ -37,10 +36,14 @@ export class AuthController {
         password: { type: 'string' },
       },
       example: {
-        inepCod: '26127792',
-        password: '26127792',
+        inepCod: '26118734',
+        password: '26118734',
       },
     },
+  })
+  @ApiHeader({
+    name: 'Content-Type',
+    description: 'application/json',
   })
   async signIn(@Body() user: Auth): Promise<Object> {
     return this.authService.signIn(user);

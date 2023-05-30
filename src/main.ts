@@ -16,7 +16,6 @@ async function main() {
     .setTitle('Esus Recife API')
     .setDescription('')
     .setVersion('1.0')
-    .addTag('esusrecife')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
