@@ -16,8 +16,8 @@ export class ManagerController {
 
   @UseGuards(AuthGuard)
   @Post()
-  async create(@Body() user: Manager): Promise<Manager> {
-    return this.managerService.create(user);
+  async create(@Body() user: Manager, @Request() req): Promise<Manager> {
+    return this.managerService.create(user, req.payload.institutionInepCod);
   }
 
   // @UseGuards(AuthGuard)

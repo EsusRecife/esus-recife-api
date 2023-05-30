@@ -15,8 +15,12 @@ export class KeyInformationService {
     return this.KeyInformationRepository.findOne({ where: { inepCod } });
   }
 
-  async create(user: KeyInformation): Promise<KeyInformation> {
-    return this.KeyInformationRepository.create(user);
+  async create(
+    payload: KeyInformation,
+    inepCod: string,
+  ): Promise<KeyInformation> {
+    payload.inepCod = inepCod;
+    return this.KeyInformationRepository.create(payload);
   }
 
   async weeklyAmnt(inepCod: string): Promise<object> {

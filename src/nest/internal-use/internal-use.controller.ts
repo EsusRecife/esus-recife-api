@@ -16,8 +16,14 @@ export class InternalUseController {
 
   @UseGuards(AuthGuard)
   @Post()
-  async create(@Body() user: InternalUse): Promise<InternalUse> {
-    return this.internalUseService.create(user);
+  async create(
+    @Body() payload: InternalUse,
+    @Request() req,
+  ): Promise<InternalUse> {
+    return this.internalUseService.create(
+      payload,
+      req.payload.institutionInepCod,
+    );
   }
 
   // @UseGuards(AuthGuard)

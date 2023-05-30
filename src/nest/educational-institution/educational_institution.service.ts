@@ -23,11 +23,12 @@ export class EducationalInstitutionService {
     });
   }
 
-  async create(user: EducationalInstitution): Promise<EducationalInstitution> {
+  async create(
+    payload: EducationalInstitution,
+  ): Promise<EducationalInstitution> {
     const salt = await bcrypt.genSalt(4, 'b');
-    user.password = await bcrypt.hash(user.password, salt);
-
-    return this.EducationalInstitutionRepository.create(user);
+    payload.password = await bcrypt.hash(payload.password, salt);
+    return this.EducationalInstitutionRepository.create(payload);
   }
 
   async update(

@@ -16,11 +16,12 @@ import { AuthGuard } from '../auth/auth.guard';
 export class EducationalInstitutionController {
   constructor(private readonly EIService: EducationalInstitutionService) {}
 
-  @UseGuards(AuthGuard)
+  //@UseGuards(AuthGuard)
   // @Get()
   // async findById(@Request() req): Promise<EducationalInstitution> {
   //   return this.EIService.findById(req.payload.institutionId);
   // }
+  @UseGuards(AuthGuard)
   @Post()
   async create(
     @Body() user: EducationalInstitution,

@@ -18,8 +18,14 @@ export class KeyInformationController {
 
   @UseGuards(AuthGuard)
   @Post()
-  async create(@Body() user: KeyInformation): Promise<KeyInformation> {
-    return this.keyInformationRepository.create(user);
+  async create(
+    @Body() user: KeyInformation,
+    @Request() req,
+  ): Promise<KeyInformation> {
+    return this.keyInformationRepository.create(
+      user,
+      req.payload.institutionInepCod,
+    );
   }
 
   // @UseGuards(AuthGuard)
