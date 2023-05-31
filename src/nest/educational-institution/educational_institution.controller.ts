@@ -7,6 +7,7 @@ import {
   Body,
   UseGuards,
   Request,
+  ForbiddenException,
 } from '@nestjs/common';
 import { EducationalInstitution } from './educational_institution.model';
 import { EducationalInstitutionService } from './educational_institution.service';
@@ -17,7 +18,7 @@ import { AuthGuard } from '../auth/auth.guard';
 export class EducationalInstitutionController {
   constructor(private readonly EIService: EducationalInstitutionService) {}
 
-  //@UseGuards(AuthGuard)
+  // @UseGuards(AuthGuard)
   // @Get()
   // async findById(@Request() req): Promise<EducationalInstitution> {
   //   return this.EIService.findById(req.payload.institutionId);
@@ -89,8 +90,16 @@ export class EducationalInstitutionController {
   async create(
     @Body() user: EducationalInstitution,
   ): Promise<EducationalInstitution> {
+    const institution = await this.EIService.findByInepCod(user.inepCod);
+    if (institution) {
+      throw new ForbiddenException(
+        'O código inep digitado já foi cadastrado no nosso banco de dados',
+      );
+    }
+
     return this.EIService.create(user);
   }
+
   // @UseGuards(AuthGuard)
   // @Put()
   // async update(
