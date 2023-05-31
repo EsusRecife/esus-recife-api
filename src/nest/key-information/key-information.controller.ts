@@ -18,17 +18,23 @@ export class KeyInformationController {
 
   @UseGuards(AuthGuard)
   @Post()
-  async create(@Body() user: KeyInformation): Promise<KeyInformation> {
-    return this.keyInformationRepository.create(user);
-  }
-
-  @UseGuards(AuthGuard)
-  @Get()
-  async findById(@Request() req): Promise<KeyInformation> {
-    return this.keyInformationRepository.findByInepCod(
+  async create(
+    @Body() user: KeyInformation,
+    @Request() req,
+  ): Promise<KeyInformation> {
+    return this.keyInformationRepository.create(
+      user,
       req.payload.institutionInepCod,
     );
   }
+
+  // @UseGuards(AuthGuard)
+  // @Get()
+  // async findById(@Request() req): Promise<KeyInformation> {
+  //   return this.keyInformationRepository.findByInepCod(
+  //     req.payload.institutionInepCod,
+  //   );
+  // }
 
   @UseGuards(AuthGuard)
   @Get('dashboard/kg')

@@ -1,0 +1,17 @@
+{
+  "inepCod": "26127792",
+  "password": "26127792"
+} POST localhost:3000/auth/login 
+
+
+{
+  "inepCod": "26118734",
+  "name": "ESCOLA MUNICIPAL MONTEIRO LOBATO",
+  "cnpj": "03153729000196",
+  "cep": "52040365",
+  "streetNumber": "3124",
+  "cellphone": "558133553486",
+  "email": "emmonteirolobato@gov.br",
+  "password":
+    "$2b$04$MasHnMOvgufbAk638ZLB/.yZH0bqW/MfAmaH.528Qmo3tylEw6kz."
+} POST localhost:3000/educational-institution

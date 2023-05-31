@@ -13,7 +13,8 @@ export class InternalUseService {
     return this.InternalUseRepository.findOne({ where: { inepCod } });
   }
 
-  async create(payload: InternalUse): Promise<InternalUse> {
+  async create(payload: InternalUse, inepCod: string): Promise<InternalUse> {
+    payload.inepCod = inepCod;
     return this.InternalUseRepository.create(payload);
   }
 

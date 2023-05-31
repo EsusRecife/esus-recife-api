@@ -12,7 +12,7 @@ export class ManagerService {
     return this.ManagerRepository.findOne({ where: { inepCod } });
   }
 
-  async create(user: Manager): Promise<Manager> {
-    return this.ManagerRepository.create(user);
+  async create(payload: Manager): Promise<Manager> {
+    return this.ManagerRepository.create(payload);
   }
 }
