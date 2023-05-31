@@ -12,8 +12,7 @@ export class ManagerService {
     return this.ManagerRepository.findOne({ where: { inepCod } });
   }
 
-  async create(payload: Manager, inepCod: string): Promise<Manager> {
-    payload.inepCod = inepCod;
+  async create(payload: Manager): Promise<Manager> {
     return this.ManagerRepository.create(payload);
   }
 }
