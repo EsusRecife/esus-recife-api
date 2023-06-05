@@ -5,8 +5,7 @@ import { INestApplication } from '@nestjs/common';
 
 describe('AuthController (e2e)', () => {
   let app: INestApplication;
-  const access_token =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpbnN0aXR1dGlvbklkIjoiNzNlNWNkYzEtMmQwOS00Mjc4LTllMjUtYzY0NDBjNTc3NWRhIiwiaW5zdGl0dXRpb25JbmVwQ29kIjoiMjYxMjc3OTIiLCJpYXQiOjE2ODU5MjY1ODEsImV4cCI6MTY4NTkzMDE4MX0._ujp4djkmXtIPp757-fq_sIhwpgb5wXlt9JxvTzH-GY';
+  let token;
   beforeAll(async () => {
     const moduleFixture = await Test.createTestingModule({
       imports: [AppModule],
@@ -35,7 +34,8 @@ describe('AuthController (e2e)', () => {
       .expect(201)
       .expect('Content-Type', /json/)
       .expect((res) => {
-        console.log(res.text);
+        token = JSON.parse(res.text);
+        token = token.access_token;
       });
   });
 
@@ -52,13 +52,26 @@ describe('AuthController (e2e)', () => {
       });
   });
 
+  it('/auth/login (POST) (Escola não cadastrada - 404)', () => {
+    const payload = { inepCod: '26127730', password: '26127730' };
+
+    return request(app.getHttpServer())
+      .post('/auth/login')
+      .send(payload)
+      .expect(404)
+      .expect('Content-Type', /json/)
+      .expect((res) => {
+        console.log(res.text);
+      });
+  });
+
   /**
    *
    * Educational Institution
    *
    */
 
-  it('/educational-institution (POST) (Escola cadastrada - 201)', () => {
+  it('/educational-institution (POST) (Escola cadastrada com sucesso - 201)', () => {
     const payload = {
       inepCod: '26118734',
       name: 'ESCOLA MUNICIPAL MONTEIRO LOBATO',
@@ -111,6 +124,15 @@ describe('AuthController (e2e)', () => {
       });
   });
 
+  it('/educational-institution (DELETE) (Escola deletada - 200)', () => {
+    return request(app.getHttpServer())
+      .delete('/educational-institution')
+      .expect(200)
+      .expect((res) => {
+        console.log(res.text);
+      });
+  });
+
   /**
    *
    * Manager
@@ -128,6 +150,22 @@ describe('AuthController (e2e)', () => {
       .post('/manager')
       .send(payload)
       .expect(201)
+      .expect('Content-Type', /json/)
+      .expect((res) => {
+        console.log(res.text);
+      });
+  });
+
+  it('/manager (POST) (Gestor com payload incompleto - 406)', () => {
+    const payload = {
+      inepCod: '26118734',
+      name: 'ESCOLA MUNICIPAL MONTEIRO LOBATO',
+    };
+
+    return request(app.getHttpServer())
+      .post('/manager')
+      .send(payload)
+      .expect(406)
       .expect('Content-Type', /json/)
       .expect((res) => {
         console.log(res.text);
@@ -154,7 +192,7 @@ describe('AuthController (e2e)', () => {
     return request(app.getHttpServer())
       .post('/internal-use')
       .send(payload)
-      .set('Authorization', `Bearer ${access_token}`)
+      .set('Authorization', `Bearer ${token}`)
       .expect(201)
       .expect('Content-Type', /json/)
       .expect((res) => {
@@ -162,11 +200,46 @@ describe('AuthController (e2e)', () => {
       });
   });
 
-  it('/internal-use/dashboard/activity (GET) (informação cadastrada - 200)', () => {
+  it('/internal-use (POST) (informação cadastrada com payload incompleto - 406)', () => {
+    const payload = {
+      activity: 'Horta comunitaria',
+      qtyStudent: 8,
+      qtyEducator: 2,
+    };
+
+    return request(app.getHttpServer())
+      .post('/internal-use')
+      .send(payload)
+      .set('Authorization', `Bearer ${token}`)
+      .expect(406)
+      .expect('Content-Type', /json/)
+      .expect((res) => {
+        console.log(res.text);
+      });
+  });
+
+  /**
+   *
+   * Dashboard
+   *
+   */
+
+  it('/internal-use/dashboard/activity (GET) (Buscar informação - 200)', () => {
     return request(app.getHttpServer())
       .get('/internal-use/dashboard/activity')
-      .set('Authorization', `Bearer ${access_token}`)
+      .set('Authorization', `Bearer ${token}`)
       .expect(200)
+      .expect('Content-Type', /json/)
+      .expect((res) => {
+        console.log(res.text);
+      });
+  });
+
+  it('/internal-use/dashboard/activity (GET) (Buscar informação com token incorreto - 401)', () => {
+    return request(app.getHttpServer())
+      .get('/internal-use/dashboard/activity')
+      .set('Authorization', `Bearer ¨&dA@DlkmASD.`)
+      .expect(401)
       .expect('Content-Type', /json/)
       .expect((res) => {
         console.log(res.text);

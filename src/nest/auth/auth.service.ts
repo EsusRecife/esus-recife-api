@@ -1,4 +1,8 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import {
+  Injectable,
+  UnauthorizedException,
+  NotFoundException,
+} from '@nestjs/common';
 import { Auth } from './auth.model';
 import { EducationalInstitutionService } from '../educational-institution/educational_institution.service';
 import { JwtService } from '@nestjs/jwt';
@@ -16,7 +20,7 @@ export class AuthService {
       user.inepCod,
     );
     if (!institution) {
-      throw new UnauthorizedException(
+      throw new NotFoundException(
         'O código inep digitado não foi encontrado no nosso banco de dados',
       );
     }

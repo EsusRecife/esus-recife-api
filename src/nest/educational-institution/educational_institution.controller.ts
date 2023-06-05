@@ -90,13 +90,6 @@ export class EducationalInstitutionController {
   async create(
     @Body() user: EducationalInstitution,
   ): Promise<EducationalInstitution> {
-    const institution = await this.EIService.findByInepCod(user.inepCod);
-    if (institution) {
-      throw new ForbiddenException(
-        'O código inep digitado já foi cadastrado no nosso banco de dados',
-      );
-    }
-
     return this.EIService.create(user);
   }
 

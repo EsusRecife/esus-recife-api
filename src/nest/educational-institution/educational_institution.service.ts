@@ -1,6 +1,7 @@
 import { Injectable, Inject } from '@nestjs/common';
 import { EducationalInstitution } from './educational_institution.model';
 import * as bcrypt from 'bcrypt';
+import { ForbiddenException, NotFoundException } from '@nestjs/common';
 
 @Injectable()
 export class EducationalInstitutionService {
@@ -26,6 +27,13 @@ export class EducationalInstitutionService {
   async create(
     payload: EducationalInstitution,
   ): Promise<EducationalInstitution> {
+    const institution = await this.findByInepCod(payload.inepCod);
+    if (institution) {
+      throw new ForbiddenException(
+        'O código inep digitado já foi cadastrado no nosso banco de dados',
+      );
+    }
+
     const salt = await bcrypt.genSalt(4, 'b');
     payload.password = await bcrypt.hash(payload.password, salt);
     return this.EducationalInstitutionRepository.create(payload);

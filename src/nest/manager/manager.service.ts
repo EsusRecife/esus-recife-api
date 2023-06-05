@@ -1,4 +1,9 @@
-import { Inject, Injectable, UnauthorizedException } from '@nestjs/common';
+import {
+  Inject,
+  Injectable,
+  UnauthorizedException,
+  NotAcceptableException,
+} from '@nestjs/common';
 import { Manager } from './manager.model';
 
 @Injectable()
@@ -13,6 +18,9 @@ export class ManagerService {
   }
 
   async create(payload: Manager): Promise<Manager> {
+    if (!payload.inepCod || !payload.cpf || !payload.name) {
+      throw new NotAcceptableException('Campos incompletos');
+    }
     return this.ManagerRepository.create(payload);
   }
 }
