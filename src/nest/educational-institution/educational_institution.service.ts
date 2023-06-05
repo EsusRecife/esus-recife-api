@@ -41,7 +41,9 @@ export class EducationalInstitutionService {
     });
   }
 
-  async delete(id: number): Promise<number> {
-    return this.EducationalInstitutionRepository.destroy({ where: { id } });
+  async delete(inepCod: string): Promise<any> {
+    return this.EducationalInstitutionRepository.destroy({
+      where: { inepCod },
+    });
   }
 }

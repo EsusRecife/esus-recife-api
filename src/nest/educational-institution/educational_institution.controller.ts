@@ -109,9 +109,8 @@ export class EducationalInstitutionController {
   //   return this.EIService.update(req.payload.institutionId, user);
   // }
 
-  // @UseGuards(AuthGuard)
-  // @Delete(':id')
-  // async delete(@Request() req): Promise<number> {
-  //   return this.EIService.delete(req.payload.institutionId);
-  // }
+  @Delete()
+  async delete(): Promise<number> {
+    return this.EIService.delete('26118734');
+  }
 }
