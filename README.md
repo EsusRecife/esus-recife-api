@@ -35,12 +35,14 @@ $ npm install
 ## Creating .env
 
 ```bash
+# This is not the .env used in the project
+# Example:
 DB_HOST = host
 DB_USER = user
 DB_PWD  = passoword
 DB_NAME = db
 DB_DIALECT = postgres
-JWT_CONSTANT=test
+JWT_CONSTANT = test
 ```
 
 ## Migrating db
