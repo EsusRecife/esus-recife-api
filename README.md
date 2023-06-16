@@ -32,6 +32,23 @@
 $ npm install
 ```
 
+## Creating .env
+
+```bash
+DB_HOST = host
+DB_USER = user
+DB_PWD  = passoword
+DB_NAME = db
+DB_DIALECT = postgres
+JWT_CONSTANT=test
+```
+
+## Migrating db
+
+```bash
+$ bash migrate.sh
+```
+
 ## Running the app
 
 ```bash
